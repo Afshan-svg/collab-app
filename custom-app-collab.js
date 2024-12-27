@@ -108,6 +108,20 @@
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
 
+            iframe.onload = () => {
+    const iframeWindow = iframe.contentWindow;
+
+    iframeWindow.onbeforeunload = () => {
+        console.log("Iframe is navigating. Preserving query parameters...");
+        const currentSrc = new URL(iframe.src);
+        if (!currentSrc.searchParams.get("embedded")) {
+            currentSrc.searchParams.set("embedded", "true");
+            iframe.src = currentSrc.toString();
+        }
+    };
+};
+
+
 
             const chatbotIcon = document.getElementById("chatbot-icon");
             chatbotIcon.onclick = function () {
