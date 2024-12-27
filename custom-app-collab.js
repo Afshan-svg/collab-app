@@ -1,7 +1,7 @@
 (function (window) {
     window.YourChatbot = {
         init: function () {
-            const scriptTag = document.querySelector('script[src*="customcode.js"]');
+            const scriptTag = document.querySelector('script[src*="custom-app-collab.js"]');
             if (!scriptTag) {
                 console.error("Chatbot script tag not found.");
                 return;
